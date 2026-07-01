@@ -101,7 +101,7 @@
 			mainGroup = 3CBDE2EE2FBDAEA1001CAB2E;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				6B7E10032D00100100B20001 /* XCLocalSwiftPackageReference "../SharedLibraries/EMathicaMathInputKit" */,
+				6B7E10032D00100100B20001 /* XCLocalSwiftPackageReference "../../SharedLibraries/EMathicaMathInputKit" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3CBDE2F82FBDAEA1001CAB2E /* Products */;
@@ -343,16 +343,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		6B7E10032D00100100B20001 /* XCLocalSwiftPackageReference "../SharedLibraries/EMathicaMathInputKit" */ = {
+		6B7E10032D00100100B20001 /* XCLocalSwiftPackageReference "../../SharedLibraries/EMathicaMathInputKit" */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = ../SharedLibraries/EMathicaMathInputKit;
+			relativePath = ../../SharedLibraries/EMathicaMathInputKit;
 		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		6B7E10022D00100100B20001 /* EMathicaMathInputCore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6B7E10032D00100100B20001 /* XCLocalSwiftPackageReference "../SharedLibraries/EMathicaMathInputKit" */;
+			package = 6B7E10032D00100100B20001 /* XCLocalSwiftPackageReference "../../SharedLibraries/EMathicaMathInputKit" */;
 			productName = EMathicaMathInputCore;
 		};
 /* End XCSwiftPackageProductDependency section */
