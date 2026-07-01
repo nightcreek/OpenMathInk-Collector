@@ -18,10 +18,10 @@ struct LatexRenderResult {
 
 /// 使用 eMathica 的 MathRenderer 进行渲染
 class EMathicaMathRenderService: LatexRenderService {
-    private let renderer: MathRenderer
+    private let renderer: LatexMathRenderer
     
     init() {
-        renderer = MathRenderer()
+        renderer = LatexMathRenderer()
     }
     
     func render(_ latex: String, fontSize: CGFloat) async throws -> LatexRenderResult {

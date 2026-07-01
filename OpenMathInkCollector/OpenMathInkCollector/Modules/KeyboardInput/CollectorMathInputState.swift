@@ -1,5 +1,6 @@
 import Foundation
 import Combine
+import EMathicaMathInputCore
 
 /// `MathInputSession` 封装器
 ///
@@ -10,11 +11,23 @@ import Combine
 class CollectorMathInputState: ObservableObject {
     @Published private(set) var session: MathInputSession
 
+    var latex: String {
+        session.displayLatex
+    }
+
+    var sourceText: String {
+        session.sourceText
+    }
+
+    var computeExpression: String {
+        session.computeExpression
+    }
+
     init() {
         self.session = MathInputSession()
     }
 
-    func apply(_ action: MathInputAction) {
+    func apply(_ action: KeyboardAction) {
         session.apply(action)
         // 注意：MathInputSession 是 class，引用不变时 @Published 不会触发通知
         objectWillChange.send()
@@ -25,21 +38,12 @@ class CollectorMathInputState: ObservableObject {
         objectWillChange.send()
     }
 
-    func exportASTJSON() -> Data? {
-        session.exportASTJSON()
+    func exportASTJSON(prettyPrinted: Bool = false) throws -> Data {
+        try session.exportEditorStateJSON(prettyPrinted: prettyPrinted)
     }
 
-    func importASTJSON(from data: Data) -> Bool {
-        let result = session.importASTJSON(from: data)
+    func importASTJSON(_ data: Data) throws {
+        try session.importEditorStateJSON(data)
         objectWillChange.send()
-        return result
-    }
-
-    func convertToMathFormat() -> String? {
-        session.convertToMathFormat()
-    }
-
-    func convertToLaTeX() -> String? {
-        session.convertToLaTeX()
     }
 }
