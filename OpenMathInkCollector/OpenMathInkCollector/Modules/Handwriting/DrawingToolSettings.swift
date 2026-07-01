@@ -1,6 +1,7 @@
 import Foundation
 import PencilKit
 import SwiftUI
+import Combine
 
 /// 手写工具类型
 enum DrawingToolType: String, Codable, CaseIterable {
@@ -118,6 +119,13 @@ class DrawingToolSettings: ObservableObject {
             print("[DrawingToolSettings] 设置保存失败: \(error)")
         }
     }
+
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.toolType = try container.decode(DrawingToolType.self, forKey: .toolType)
+        self.colorIndex = try container.decode(Int.self, forKey: .colorIndex)
+        self.thicknessIndex = try container.decode(Int.self, forKey: .thicknessIndex)
+    }
     
     private init() {
         loadSettings()
@@ -152,12 +160,5 @@ extension DrawingToolSettings: Codable {
         try container.encode(toolType, forKey: .toolType)
         try container.encode(colorIndex, forKey: .colorIndex)
         try container.encode(thicknessIndex, forKey: .thicknessIndex)
-    }
-    
-    required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.toolType = try container.decode(DrawingToolType.self, forKey: .toolType)
-        self.colorIndex = try container.decode(Int.self, forKey: .colorIndex)
-        self.thicknessIndex = try container.decode(Int.self, forKey: .thicknessIndex)
     }
 }

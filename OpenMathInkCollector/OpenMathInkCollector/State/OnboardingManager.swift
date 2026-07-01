@@ -1,4 +1,5 @@
 import SwiftUI
+import Combine
 
 /// 引导页面数据模型
 struct OnboardingPage {

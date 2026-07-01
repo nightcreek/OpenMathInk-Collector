@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import Combine
 
 /// 键盘快捷键映射
 struct KeyboardShortcut {

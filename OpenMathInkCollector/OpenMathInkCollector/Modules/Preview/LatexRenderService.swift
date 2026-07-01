@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import Combine
 import EMathicaMathInputCore
 
 /// LaTeX渲染服务协议

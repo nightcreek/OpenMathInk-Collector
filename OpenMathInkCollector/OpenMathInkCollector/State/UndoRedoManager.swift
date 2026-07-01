@@ -1,5 +1,6 @@
 import Foundation
 import PencilKit
+import Combine
 import EMathicaMathInputCore
 
 /// 操作历史记录，用于撤销/重做
