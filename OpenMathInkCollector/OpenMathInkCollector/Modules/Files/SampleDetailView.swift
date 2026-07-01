@@ -126,18 +126,20 @@ private struct ThumbnailImageView: NSViewRepresentable {
 
 struct SampleDetailView_Previews: PreviewProvider {
     static var previews: some View {
+        let now = Date()
         let sample = MathInkSample(
             id: UUID(),
             latex: "x^2 + y^2 = r^2",
             sourceText: "圆方程",
             computeExpression: "r = sqrt(x^2 + y^2)",
             astJSONFileName: "ast_001.json",
+            status: .confirmed,
             drawingDataFileName: "draw_001.drawing",
             imageFileName: "img_001.png",
             canvasWidth: 1024,
             canvasHeight: 768,
-            status: .confirmed,
-            modifiedAt: Date()
+            createdAt: now,
+            modifiedAt: now
         )
         SampleDetailView(sample: sample, imageURL: nil)
             .padding()
