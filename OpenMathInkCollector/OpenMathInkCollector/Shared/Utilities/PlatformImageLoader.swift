@@ -6,12 +6,12 @@ import UIKit
 /// 支持内存缓存的跨平台图片加载器
 enum PlatformImageLoader {
     /// 内存缓存（存储原始 Data，避免重复读取和编码）
-    private static let cache = NSCache<NSURL, NSData>()
-
-    static {
+    private static let cache: NSCache<NSURL, NSData> = {
+        let cache = NSCache<NSURL, NSData>()
         cache.countLimit = 50
         cache.totalCostLimit = 50 * 1024 * 1024 // 50 MB
-    }
+        return cache
+    }()
 
     /// 从缓存或磁盘异步加载图片原始数据
     static func loadData(from url: URL) async -> Data? {
@@ -49,12 +49,12 @@ extension Image {
 import AppKit
 
 enum PlatformImageLoader {
-    private static let cache = NSCache<NSURL, NSData>()
-
-    static {
+    private static let cache: NSCache<NSURL, NSData> = {
+        let cache = NSCache<NSURL, NSData>()
         cache.countLimit = 50
         cache.totalCostLimit = 50 * 1024 * 1024
-    }
+        return cache
+    }()
 
     static func loadData(from url: URL) async -> Data? {
         if let cached = cache.object(forKey: url as NSURL) {
