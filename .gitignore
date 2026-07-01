@@ -2,6 +2,7 @@
 build/
 DerivedData/
 *.xcuserstate
+*.xcscmblueprint
 *.xcuserdata/
 **/xcuserdata/
 
@@ -13,7 +14,16 @@ DerivedData/
 .DS_Store
 __MACOSX/
 
+# Environment / local config
+.env
+*.env
+
+# Logs
+*.log
+
 # Agent / IDE
+.vscode/
+.idea/
 .claude/
 .reasonix/
 reasonix.toml

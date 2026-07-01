@@ -6,6 +6,7 @@ DerivedData/
 ## User settings
 ### IDE
 *.xcuserstate
+*.xcscmblueprint
 *.xcsettings
 *.xcworkspace/xcuserdata/
 *.xcuserdatad/
@@ -62,6 +63,10 @@ CrashReporter/
 
 ## Device logs
 *.log
+
+## IDE
+.vscode/
+.idea/
 
 ## Temporary files
 *.tmp
