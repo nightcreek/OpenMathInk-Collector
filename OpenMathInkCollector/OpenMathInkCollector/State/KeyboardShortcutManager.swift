@@ -30,55 +30,55 @@ final class KeyboardShortcutManager: ObservableObject {
         activeShortcuts = [
             // 撤销
             KeyboardShortcut(key: "z", modifiers: [.command]) {
-                guard let workspace = appWorkspace() else { return }
+                guard let workspace = self.appWorkspace() else { return }
                 workspace.undo()
             },
             
             // 重做
             KeyboardShortcut(key: "z", modifiers: [.command, .shift]) {
-                guard let workspace = appWorkspace() else { return }
+                guard let workspace = self.appWorkspace() else { return }
                 workspace.redo()
             },
             
             // 保存草稿
             KeyboardShortcut(key: "s", modifiers: [.command]) {
-                guard let workspace = appWorkspace() else { return }
+                guard let workspace = self.appWorkspace() else { return }
                 workspace.saveCurrentDraft()
             },
             
             // 新建样本
             KeyboardShortcut(key: "n", modifiers: [.command]) {
-                guard let workspace = appWorkspace() else { return }
+                guard let workspace = self.appWorkspace() else { return }
                 workspace.createNewSample()
             },
             
             // 确认样本
             KeyboardShortcut(key: "e", modifiers: [.command]) {
-                guard let workspace = appWorkspace() else { return }
+                guard let workspace = self.appWorkspace() else { return }
                 workspace.confirmCurrentSample()
             },
             
             // 导出
             KeyboardShortcut(key: "e", modifiers: [.command, .shift]) {
-                guard let workspace = appWorkspace() else { return }
+                guard let workspace = self.appWorkspace() else { return }
                 workspace.exportConfirmedSamples()
             },
             
             // 删除当前样本
             KeyboardShortcut(key: KeyEquivalent.delete, modifiers: [.command]) {
-                guard let workspace = appWorkspace(), let sample = workspace.selectedSample else { return }
+                guard let workspace = self.appWorkspace(), let sample = workspace.selectedSample else { return }
                 workspace.requestDeleteSample(id: sample.id)
             },
             
             // 清空画布
             KeyboardShortcut(key: KeyEquivalent.delete, modifiers: [.command, .shift]) {
-                guard let workspace = appWorkspace() else { return }
+                guard let workspace = self.appWorkspace() else { return }
                 workspace.clearCurrentDrawing()
             },
             
             // 清空公式输入
             KeyboardShortcut(key: "x", modifiers: [.command, .shift]) {
-                guard let workspace = appWorkspace() else { return }
+                guard let workspace = self.appWorkspace() else { return }
                 workspace.clearFormulaInput()
             }
         ]
@@ -96,7 +96,9 @@ final class KeyboardShortcutManager: ObservableObject {
             ("删除", "Cmd+Delete"),
             ("清空画布", "Cmd+Shift+Delete"),
             ("清空公式", "Cmd+Shift+X")
-        ].map { ShortcutDisplayItem(action: $0.0, keys: $1) }
+        ].map { item in
+            ShortcutDisplayItem(action: item.0, keys: item.1)
+        }
     }
     
     /// 执行快捷键
@@ -122,7 +124,9 @@ struct ShortcutDisplayItem {
 
 /// SwiftUI 视图扩展，添加键盘快捷键支持
 extension View {
+    @ViewBuilder
     func keyboardShortcuts() -> some View {
+        #if os(macOS)
         self
             .onCommand("z") {
                 KeyboardShortcutManager.shared.executeShortcut("z", modifiers: [.command])
@@ -142,9 +146,14 @@ extension View {
             .onCommand("E") {
                 KeyboardShortcutManager.shared.executeShortcut("e", modifiers: [.command, .shift])
             }
-            .onCommand(KeyEquivalent.delete) {
+            #if os(macOS)
+            .onDeleteCommand {
                 KeyboardShortcutManager.shared.executeShortcut(KeyEquivalent.delete, modifiers: [.command])
             }
+            #endif
+        #else
+        self
+        #endif
     }
 }
 
