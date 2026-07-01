@@ -67,13 +67,7 @@ struct AppRootView: View {
                     .environmentObject(workspace)
                     .environmentObject(consentManager)
             }
-            // 键盘快捷键
-            .onCommand("z") { workspace.undo() }
-            .onCommand("Z") { workspace.redo() }
-            .onCommand("s") { workspace.saveCurrentDraft() }
-            .onCommand("n") { workspace.createNewSample() }
-            .onCommand("e") { workspace.confirmCurrentSample() }
-            .onCommand("E") { workspace.exportConfirmedSamples() }
+            .platformCommands(workspace: workspace)
         }
     }
     
@@ -349,6 +343,23 @@ struct AppRootView: View {
                 .blur(radius: 36)
                 .offset(x: 60, y: -60)
         }
+    }
+}
+
+private extension View {
+    @ViewBuilder
+    func platformCommands(workspace: CollectorWorkspaceState) -> some View {
+        #if os(macOS)
+        self
+            .onCommand("z") { workspace.undo() }
+            .onCommand("Z") { workspace.redo() }
+            .onCommand("s") { workspace.saveCurrentDraft() }
+            .onCommand("n") { workspace.createNewSample() }
+            .onCommand("e") { workspace.confirmCurrentSample() }
+            .onCommand("E") { workspace.exportConfirmedSamples() }
+        #else
+        self
+        #endif
     }
 }
 
