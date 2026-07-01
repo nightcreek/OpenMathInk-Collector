@@ -117,25 +117,31 @@ final class CollectorWorkspaceState: ObservableObject {
     }
     
     private func pushCurrentToUndo() {
-        let drawing = currentDrawingData.flatMap { try? PKDrawing(data: $0) }
+        let snapshot = currentDrawingData
+            .flatMap { try? PKDrawing(data: $0) }
+            .map { DrawingSnapshot(drawing: $0, size: currentCanvasSize) }
+            ?? DrawingSnapshot(data: nil, size: currentCanvasSize)
         undoRedoManager.pushUndo(UndoRedoManager.UndoState(
             action: .latexInput(currentLatex),
             latex: currentLatex,
             sourceText: currentSourceText,
             computeExpression: currentComputeExpression,
-            drawingSnapshot: DrawingSnapshot(drawing: drawing, size: currentCanvasSize),
+            drawingSnapshot: snapshot,
             timestamp: Date()
         ))
     }
     
     private func pushCurrentToRedo() {
-        let drawing = currentDrawingData.flatMap { try? PKDrawing(data: $0) }
+        let snapshot = currentDrawingData
+            .flatMap { try? PKDrawing(data: $0) }
+            .map { DrawingSnapshot(drawing: $0, size: currentCanvasSize) }
+            ?? DrawingSnapshot(data: nil, size: currentCanvasSize)
         undoRedoManager.pushRedo(UndoRedoManager.UndoState(
             action: .latexInput(currentLatex),
             latex: currentLatex,
             sourceText: currentSourceText,
             computeExpression: currentComputeExpression,
-            drawingSnapshot: DrawingSnapshot(drawing: drawing, size: currentCanvasSize),
+            drawingSnapshot: snapshot,
             timestamp: Date()
         ))
     }
@@ -402,9 +408,11 @@ final class CollectorWorkspaceState: ObservableObject {
                     isExporting = false
                     
                     for id in exportIDs {
-                        if let idx = samples.firstIndex(where: { $0.id == id }) {
-                            samples[idx].status = .exported
-                            samples[idx].modifiedAt = Date()
+                        if let idx = self.samples.firstIndex(where: { $0.id == id }) {
+                            var sample = self.samples[idx]
+                            sample.status = .exported
+                            sample.modifiedAt = Date()
+                            self.samples[idx] = sample
                         }
                     }
                     persistSamples()
