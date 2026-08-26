@@ -8,7 +8,7 @@ struct OpenMathInkCollectorApp: App {
     var body: some Scene {
         WindowGroup {
             ZStack {
-                AppRootView()
+                DatasetCollectorRootView()
                 
                 if onboardingManager.shouldShowOnboarding {
                     OnboardingView(isPresented: $onboardingManager.shouldShowOnboarding)

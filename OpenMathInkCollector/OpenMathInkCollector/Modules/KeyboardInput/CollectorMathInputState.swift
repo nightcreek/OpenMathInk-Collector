@@ -1,5 +1,6 @@
 import Foundation
 import Combine
+import EMathicaFormulaDisplayCore
 import EMathicaMathInputCore
 
 /// `MathInputSession` 封装器
@@ -23,6 +24,14 @@ class CollectorMathInputState: ObservableObject {
         session.computeExpression
     }
 
+    var displayDocument: FormulaDisplayDocument {
+        FormulaDisplayProjection.displayDocument(
+            source: session.formula(),
+            cursor: FormulaDisplayCursorState(editorCursor: session.editorState.cursor),
+            includesInsertionMarkers: true
+        )
+    }
+
     init() {
         self.session = MathInputSession()
     }
@@ -36,6 +45,17 @@ class CollectorMathInputState: ObservableObject {
     func reset() {
         session.reset()
         objectWillChange.send()
+    }
+
+    /// Parse into a fresh session, then swap it in only after a successful
+    /// import. A failed legacy restore therefore cannot overwrite editor truth.
+    @discardableResult
+    func replaceWithLatex(_ latex: String) -> Bool {
+        let candidate = MathInputSession()
+        guard candidate.latexin(latex) else { return false }
+        session = candidate
+        objectWillChange.send()
+        return true
     }
 
     func exportASTJSON(prettyPrinted: Bool = false) throws -> Data {

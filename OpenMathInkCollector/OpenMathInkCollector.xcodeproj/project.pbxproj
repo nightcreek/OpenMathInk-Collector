@@ -8,16 +8,45 @@
 
 /* Begin PBXBuildFile section */
 		6B7E10012D00100100B20001 /* EMathicaMathInputCore in Frameworks */ = {isa = PBXBuildFile; productRef = 6B7E10022D00100100B20001 /* EMathicaMathInputCore */; };
+		6B7E10112D00100100B20001 /* EMathicaFormulaKeyboardCore in Frameworks */ = {isa = PBXBuildFile; productRef = 6B7E10212D00100100B20001 /* EMathicaFormulaKeyboardCore */; };
+		6B7E10122D00100100B20001 /* EMathicaFormulaKeyboardBuiltin in Frameworks */ = {isa = PBXBuildFile; productRef = 6B7E10222D00100100B20001 /* EMathicaFormulaKeyboardBuiltin */; };
+		6B7E10132D00100100B20001 /* EMathicaFormulaKeyboardRendering in Frameworks */ = {isa = PBXBuildFile; productRef = 6B7E10232D00100100B20001 /* EMathicaFormulaKeyboardRendering */; };
+		6B7E10142D00100100B20001 /* EMathicaFormulaKeyboardSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6B7E10242D00100100B20001 /* EMathicaFormulaKeyboardSwiftUI */; };
+		6B7E10152D00100100B20001 /* EMathicaFormulaDisplayCore in Frameworks */ = {isa = PBXBuildFile; productRef = 6B7E10252D00100100B20001 /* EMathicaFormulaDisplayCore */; };
+		6B7E10162D00100100B20001 /* EMathicaFormulaDisplaySwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6B7E10262D00100100B20001 /* EMathicaFormulaDisplaySwiftUI */; };
+		6B7E10172D00100100B20001 /* EMathicaThemeKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6B7E10272D00100100B20001 /* EMathicaThemeKit */; };
+		6B7E10412D00100100B20001 /* OpenMathInkDatasetCore in Frameworks */ = {isa = PBXBuildFile; productRef = 6B7E10422D00100100B20001 /* OpenMathInkDatasetCore */; };
+		6B7E20112D00100100B20001 /* EMathicaMathInputCore in Frameworks */ = {isa = PBXBuildFile; productRef = 6B7E20212D00100100B20001 /* EMathicaMathInputCore */; };
+		6B7E20122D00100100B20001 /* EMathicaFormulaKeyboardCore in Frameworks */ = {isa = PBXBuildFile; productRef = 6B7E20222D00100100B20001 /* EMathicaFormulaKeyboardCore */; };
+		6B7E20132D00100100B20001 /* EMathicaFormulaKeyboardBuiltin in Frameworks */ = {isa = PBXBuildFile; productRef = 6B7E20232D00100100B20001 /* EMathicaFormulaKeyboardBuiltin */; };
+		6B7E20142D00100100B20001 /* EMathicaFormulaKeyboardSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6B7E20242D00100100B20001 /* EMathicaFormulaKeyboardSwiftUI */; };
+		6B7E20152D00100100B20001 /* EMathicaFormulaDisplayCore in Frameworks */ = {isa = PBXBuildFile; productRef = 6B7E20252D00100100B20001 /* EMathicaFormulaDisplayCore */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6B7E200A2D00100100B20001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3CBDE2EF2FBDAEA1001CAB2E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3CBDE2F62FBDAEA1001CAB2E;
+			remoteInfo = OpenMathInkCollector;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		3CBDE2F72FBDAEA1001CAB2E /* OpenMathInkCollector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenMathInkCollector.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B7E20012D00100100B20001 /* OpenMathInkCollectorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenMathInkCollectorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		3CBDE2F92FBDAEA1001CAB2E /* OpenMathInkCollector */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = OpenMathInkCollector;
+			sourceTree = "<group>";
+		};
+		6B7E20022D00100100B20001 /* OpenMathInkCollectorTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = OpenMathInkCollectorTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -28,6 +57,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B7E10012D00100100B20001 /* EMathicaMathInputCore in Frameworks */,
+				6B7E10112D00100100B20001 /* EMathicaFormulaKeyboardCore in Frameworks */,
+				6B7E10122D00100100B20001 /* EMathicaFormulaKeyboardBuiltin in Frameworks */,
+				6B7E10132D00100100B20001 /* EMathicaFormulaKeyboardRendering in Frameworks */,
+				6B7E10142D00100100B20001 /* EMathicaFormulaKeyboardSwiftUI in Frameworks */,
+				6B7E10152D00100100B20001 /* EMathicaFormulaDisplayCore in Frameworks */,
+				6B7E10162D00100100B20001 /* EMathicaFormulaDisplaySwiftUI in Frameworks */,
+				6B7E10172D00100100B20001 /* EMathicaThemeKit in Frameworks */,
+				6B7E10412D00100100B20001 /* OpenMathInkDatasetCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6B7E20032D00100100B20001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6B7E20112D00100100B20001 /* EMathicaMathInputCore in Frameworks */,
+				6B7E20122D00100100B20001 /* EMathicaFormulaKeyboardCore in Frameworks */,
+				6B7E20132D00100100B20001 /* EMathicaFormulaKeyboardBuiltin in Frameworks */,
+				6B7E20142D00100100B20001 /* EMathicaFormulaKeyboardSwiftUI in Frameworks */,
+				6B7E20152D00100100B20001 /* EMathicaFormulaDisplayCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				3CBDE2F92FBDAEA1001CAB2E /* OpenMathInkCollector */,
+				6B7E20022D00100100B20001 /* OpenMathInkCollectorTests */,
 				3CBDE2F82FBDAEA1001CAB2E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -46,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				3CBDE2F72FBDAEA1001CAB2E /* OpenMathInkCollector.app */,
+				6B7E20012D00100100B20001 /* OpenMathInkCollectorTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -71,10 +122,46 @@
 			name = OpenMathInkCollector;
 			packageProductDependencies = (
 				6B7E10022D00100100B20001 /* EMathicaMathInputCore */,
+				6B7E10212D00100100B20001 /* EMathicaFormulaKeyboardCore */,
+				6B7E10222D00100100B20001 /* EMathicaFormulaKeyboardBuiltin */,
+				6B7E10232D00100100B20001 /* EMathicaFormulaKeyboardRendering */,
+				6B7E10242D00100100B20001 /* EMathicaFormulaKeyboardSwiftUI */,
+				6B7E10252D00100100B20001 /* EMathicaFormulaDisplayCore */,
+				6B7E10262D00100100B20001 /* EMathicaFormulaDisplaySwiftUI */,
+				6B7E10272D00100100B20001 /* EMathicaThemeKit */,
+				6B7E10422D00100100B20001 /* OpenMathInkDatasetCore */,
 			);
 			productName = OpenMathInkCollector;
 			productReference = 3CBDE2F72FBDAEA1001CAB2E /* OpenMathInkCollector.app */;
 			productType = "com.apple.product-type.application";
+		};
+		6B7E20062D00100100B20001 /* OpenMathInkCollectorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6B7E20092D00100100B20001 /* Build configuration list for PBXNativeTarget "OpenMathInkCollectorTests" */;
+			buildPhases = (
+				6B7E20052D00100100B20001 /* Sources */,
+				6B7E20032D00100100B20001 /* Frameworks */,
+				6B7E20042D00100100B20001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6B7E200B2D00100100B20001 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				6B7E20022D00100100B20001 /* OpenMathInkCollectorTests */,
+			);
+			name = OpenMathInkCollectorTests;
+			packageProductDependencies = (
+				6B7E20212D00100100B20001 /* EMathicaMathInputCore */,
+				6B7E20222D00100100B20001 /* EMathicaFormulaKeyboardCore */,
+				6B7E20232D00100100B20001 /* EMathicaFormulaKeyboardBuiltin */,
+				6B7E20242D00100100B20001 /* EMathicaFormulaKeyboardSwiftUI */,
+				6B7E20252D00100100B20001 /* EMathicaFormulaDisplayCore */,
+			);
+			productName = OpenMathInkCollectorTests;
+			productReference = 6B7E20012D00100100B20001 /* OpenMathInkCollectorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -89,6 +176,10 @@
 					3CBDE2F62FBDAEA1001CAB2E = {
 						CreatedOnToolsVersion = 26.3;
 					};
+					6B7E20062D00100100B20001 = {
+						CreatedOnToolsVersion = 26.3;
+						TestTargetID = 3CBDE2F62FBDAEA1001CAB2E;
+					};
 				};
 			};
 			buildConfigurationList = 3CBDE2F22FBDAEA1001CAB2E /* Build configuration list for PBXProject "OpenMathInkCollector" */;
@@ -102,6 +193,10 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				6B7E10032D00100100B20001 /* XCLocalSwiftPackageReference "../../SharedLibraries/EMathicaMathInputKit" */,
+				6B7E10312D00100100B20001 /* XCLocalSwiftPackageReference "../../SharedLibraries/EMathicaFormulaKeyboardKit" */,
+				6B7E10322D00100100B20001 /* XCLocalSwiftPackageReference "../../SharedLibraries/EMathicaFormulaDisplayKit" */,
+				6B7E10332D00100100B20001 /* XCLocalSwiftPackageReference "../../SharedLibraries/EMathicaThemeKit" */,
+				6B7E10432D00100100B20001 /* XCLocalSwiftPackageReference "../OpenMathInkDatasetCore" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3CBDE2F82FBDAEA1001CAB2E /* Products */;
@@ -109,12 +204,20 @@
 			projectRoot = "";
 			targets = (
 				3CBDE2F62FBDAEA1001CAB2E /* OpenMathInkCollector */,
+				6B7E20062D00100100B20001 /* OpenMathInkCollectorTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		3CBDE2F52FBDAEA1001CAB2E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6B7E20042D00100100B20001 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -131,7 +234,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6B7E20052D00100100B20001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6B7E200B2D00100100B20001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3CBDE2F62FBDAEA1001CAB2E /* OpenMathInkCollector */;
+			targetProxy = 6B7E200A2D00100100B20001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		3CBDE31B2FBDAEA3001CAB2E /* Debug */ = {
@@ -268,8 +386,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -300,8 +418,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -316,6 +434,54 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		6B7E20072D00100100B20001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T33L2DY7RG;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = eMathica.OpenMathInkCollectorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpenMathInkCollector.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OpenMathInkCollector";
+				TEST_TARGET_NAME = OpenMathInkCollector;
+			};
+			name = Debug;
+		};
+		6B7E20082D00100100B20001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T33L2DY7RG;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = eMathica.OpenMathInkCollectorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpenMathInkCollector.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OpenMathInkCollector";
+				TEST_TARGET_NAME = OpenMathInkCollector;
 			};
 			name = Release;
 		};
@@ -340,12 +506,37 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		6B7E20092D00100100B20001 /* Build configuration list for PBXNativeTarget "OpenMathInkCollectorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6B7E20072D00100100B20001 /* Debug */,
+				6B7E20082D00100100B20001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
 		6B7E10032D00100100B20001 /* XCLocalSwiftPackageReference "../../SharedLibraries/EMathicaMathInputKit" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../../SharedLibraries/EMathicaMathInputKit;
+		};
+		6B7E10312D00100100B20001 /* XCLocalSwiftPackageReference "../../SharedLibraries/EMathicaFormulaKeyboardKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../SharedLibraries/EMathicaFormulaKeyboardKit;
+		};
+		6B7E10322D00100100B20001 /* XCLocalSwiftPackageReference "../../SharedLibraries/EMathicaFormulaDisplayKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../SharedLibraries/EMathicaFormulaDisplayKit;
+		};
+		6B7E10332D00100100B20001 /* XCLocalSwiftPackageReference "../../SharedLibraries/EMathicaThemeKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../SharedLibraries/EMathicaThemeKit;
+		};
+		6B7E10432D00100100B20001 /* XCLocalSwiftPackageReference "../OpenMathInkDatasetCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../OpenMathInkDatasetCore;
 		};
 /* End XCLocalSwiftPackageReference section */
 
@@ -354,6 +545,71 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6B7E10032D00100100B20001 /* XCLocalSwiftPackageReference "../../SharedLibraries/EMathicaMathInputKit" */;
 			productName = EMathicaMathInputCore;
+		};
+		6B7E10212D00100100B20001 /* EMathicaFormulaKeyboardCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B7E10312D00100100B20001 /* XCLocalSwiftPackageReference "../../SharedLibraries/EMathicaFormulaKeyboardKit" */;
+			productName = EMathicaFormulaKeyboardCore;
+		};
+		6B7E10222D00100100B20001 /* EMathicaFormulaKeyboardBuiltin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B7E10312D00100100B20001 /* XCLocalSwiftPackageReference "../../SharedLibraries/EMathicaFormulaKeyboardKit" */;
+			productName = EMathicaFormulaKeyboardBuiltin;
+		};
+		6B7E10232D00100100B20001 /* EMathicaFormulaKeyboardRendering */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B7E10312D00100100B20001 /* XCLocalSwiftPackageReference "../../SharedLibraries/EMathicaFormulaKeyboardKit" */;
+			productName = EMathicaFormulaKeyboardRendering;
+		};
+		6B7E10242D00100100B20001 /* EMathicaFormulaKeyboardSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B7E10312D00100100B20001 /* XCLocalSwiftPackageReference "../../SharedLibraries/EMathicaFormulaKeyboardKit" */;
+			productName = EMathicaFormulaKeyboardSwiftUI;
+		};
+		6B7E10252D00100100B20001 /* EMathicaFormulaDisplayCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B7E10322D00100100B20001 /* XCLocalSwiftPackageReference "../../SharedLibraries/EMathicaFormulaDisplayKit" */;
+			productName = EMathicaFormulaDisplayCore;
+		};
+		6B7E10262D00100100B20001 /* EMathicaFormulaDisplaySwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B7E10322D00100100B20001 /* XCLocalSwiftPackageReference "../../SharedLibraries/EMathicaFormulaDisplayKit" */;
+			productName = EMathicaFormulaDisplaySwiftUI;
+		};
+		6B7E10272D00100100B20001 /* EMathicaThemeKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B7E10332D00100100B20001 /* XCLocalSwiftPackageReference "../../SharedLibraries/EMathicaThemeKit" */;
+			productName = EMathicaThemeKit;
+		};
+		6B7E10422D00100100B20001 /* OpenMathInkDatasetCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B7E10432D00100100B20001 /* XCLocalSwiftPackageReference "../OpenMathInkDatasetCore" */;
+			productName = OpenMathInkDatasetCore;
+		};
+		6B7E20212D00100100B20001 /* EMathicaMathInputCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B7E10032D00100100B20001 /* XCLocalSwiftPackageReference "../../SharedLibraries/EMathicaMathInputKit" */;
+			productName = EMathicaMathInputCore;
+		};
+		6B7E20222D00100100B20001 /* EMathicaFormulaKeyboardCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B7E10312D00100100B20001 /* XCLocalSwiftPackageReference "../../SharedLibraries/EMathicaFormulaKeyboardKit" */;
+			productName = EMathicaFormulaKeyboardCore;
+		};
+		6B7E20232D00100100B20001 /* EMathicaFormulaKeyboardBuiltin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B7E10312D00100100B20001 /* XCLocalSwiftPackageReference "../../SharedLibraries/EMathicaFormulaKeyboardKit" */;
+			productName = EMathicaFormulaKeyboardBuiltin;
+		};
+		6B7E20242D00100100B20001 /* EMathicaFormulaKeyboardSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B7E10312D00100100B20001 /* XCLocalSwiftPackageReference "../../SharedLibraries/EMathicaFormulaKeyboardKit" */;
+			productName = EMathicaFormulaKeyboardSwiftUI;
+		};
+		6B7E20252D00100100B20001 /* EMathicaFormulaDisplayCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B7E10322D00100100B20001 /* XCLocalSwiftPackageReference "../../SharedLibraries/EMathicaFormulaDisplayKit" */;
+			productName = EMathicaFormulaDisplayCore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -1,12 +1,21 @@
 import SwiftUI
 
 struct AppRootView: View {
-    @StateObject private var workspace = CollectorWorkspaceState()
+    @StateObject private var workspace: CollectorWorkspaceState
+    @StateObject private var keyboardSession: CollectorFormulaKeyboardSession
     @EnvironmentObject private var consentManager: ContributorConsentManager
     @State private var showFilesPanel = false
     @State private var showDeleteAlert = false
     @State private var showSettings = false
     @State private var sampleToDelete: MathInkSample?
+
+    init() {
+        let workspace = CollectorWorkspaceState()
+        _workspace = StateObject(wrappedValue: workspace)
+        _keyboardSession = StateObject(
+            wrappedValue: CollectorFormulaKeyboardSession(workspace: workspace)
+        )
+    }
     
     var body: some View {
         NavigationStack {
@@ -148,14 +157,20 @@ struct AppRootView: View {
     
     private func mainContent(for proxy: GeometryProxy) -> some View {
         let width = proxy.size.width
-        let topBarHeight: CGFloat = width < 980 ? 92 : 64
+        let isCompact = width < 900
+        let topBarHeight: CGFloat = isCompact ? 72 : 64
         let verticalSpacing: CGFloat = 18
         let contentHeight = max(320, proxy.size.height - topBarHeight - verticalSpacing - 24)
-        let isCompact = width < 760
-        let leftRatio: CGFloat = width >= 1120 ? 0.60 : 0.56
+        let leftRatio: CGFloat = 0.48
         
         return VStack(alignment: .leading, spacing: 16) {
-            headerBar
+            Group {
+                if isCompact {
+                    compactHeaderBar
+                } else {
+                    headerBar
+                }
+            }
                 .frame(height: topBarHeight)
             
             if isCompact {
@@ -167,29 +182,99 @@ struct AppRootView: View {
     }
     
     private var compactLayout: some View {
-        VStack(spacing: 12) {
-            HandwritingCanvasView()
-                .frame(maxHeight: .infinity)
-            
-            GeometryReader { rightProxy in
-                let availableHeight = rightProxy.size.height
-                let spacing: CGFloat = 12
-                let previewHeight = min(max(availableHeight * 0.28, 140), 180)
-                let keyboardHeight = max(220, availableHeight - previewHeight - spacing)
-                
-                VStack(spacing: spacing) {
-                    LatexPreviewView()
-                        .frame(height: previewHeight)
-                    LatexKeyboardInputView()
-                        .frame(height: keyboardHeight)
-                }
+        ScrollView(.vertical) {
+            VStack(spacing: 12) {
+                HandwritingCanvasView()
+                    .frame(minHeight: 600)
+
+                LatexPreviewView()
+                    .frame(minHeight: 330)
+
+                LatexKeyboardInputView(session: keyboardSession)
+                    .frame(minHeight: 360, idealHeight: 390, maxHeight: 430)
             }
         }
+        .scrollBounceBehavior(.basedOnSize)
+    }
+
+    private var compactHeaderBar: some View {
+        HStack(spacing: 12) {
+            VStack(alignment: .leading, spacing: 2) {
+                Text("OpenMathInk Collector")
+                    .font(.headline.weight(.bold))
+                    .lineLimit(1)
+                Text("本地采集数学手写与结构化标签")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(1)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+
+            Button {
+                workspace.confirmCurrentSample()
+            } label: {
+                Image(systemName: "checkmark.circle.fill")
+                    .font(.title3)
+            }
+            .buttonStyle(.borderedProminent)
+            .accessibilityLabel("确认样本")
+
+            Menu {
+                Button {
+                    showFilesPanel = true
+                } label: {
+                    Label("样本文件", systemImage: "sidebar.left")
+                }
+
+                Button {
+                    workspace.saveCurrentDraft()
+                } label: {
+                    Label("保存草稿", systemImage: "square.and.arrow.down")
+                }
+
+                if let selected = workspace.selectedSample {
+                    Button(role: .destructive) {
+                        sampleToDelete = selected
+                        showDeleteAlert = true
+                    } label: {
+                        Label("删除样本", systemImage: "trash")
+                    }
+                }
+
+                if !consentManager.hasValidConsent {
+                    Button {
+                        consentManager.requestConsent()
+                    } label: {
+                        Label("同意条款", systemImage: "hand.raised")
+                    }
+                }
+
+                Button {
+                    showSettings = true
+                } label: {
+                    Label("设置", systemImage: "gear")
+                }
+            } label: {
+                Image(systemName: "ellipsis.circle")
+                    .font(.title3)
+            }
+            .buttonStyle(.bordered)
+            .accessibilityLabel("更多操作")
+        }
+        .padding(.horizontal, 14)
+        .padding(.vertical, 10)
+        .background(Color.white.opacity(0.06))
+        .background(.ultraThinMaterial)
+        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .stroke(Color.white.opacity(0.08), lineWidth: 1)
+        )
     }
     
     private func regularLayout(width: CGFloat, contentHeight: CGFloat, leftRatio: CGFloat) -> some View {
-        let previewHeight = min(max(contentHeight * 0.30, 190), 250)
-        let keyboardHeight = min(360, max(320, contentHeight * 0.43))
+        let previewHeight = min(max(contentHeight * 0.38, 290), 330)
+        let keyboardHeight = min(430, max(320, contentHeight * 0.43))
         
         return HStack(spacing: 18) {
             HandwritingCanvasView()
@@ -199,7 +284,7 @@ struct AppRootView: View {
                 LatexPreviewView()
                     .frame(height: previewHeight)
                 Spacer(minLength: 12)
-                LatexKeyboardInputView()
+                LatexKeyboardInputView(session: keyboardSession)
                     .frame(height: keyboardHeight)
             }
             .frame(maxWidth: .infinity)

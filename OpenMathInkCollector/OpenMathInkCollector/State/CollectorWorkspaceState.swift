@@ -2,6 +2,7 @@ import Foundation
 import Combine
 import CoreGraphics
 import PencilKit
+import EMathicaFormulaDisplayCore
 import EMathicaMathInputCore
 
 @MainActor
@@ -75,6 +76,10 @@ final class CollectorWorkspaceState: ObservableObject {
     
     var hasFormulaLabel: Bool {
         !currentLatex.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+
+    var formulaDisplayDocument: FormulaDisplayDocument {
+        mathInputState.displayDocument
     }
     
     var hasHandwriting: Bool {
@@ -152,11 +157,14 @@ final class CollectorWorkspaceState: ObservableObject {
         currentComputeExpression = state.computeExpression
         currentDrawingData = state.drawingSnapshot.data
         currentCanvasSize = state.drawingSnapshot.size
-        
-        // 恢复 AST 状态
-        if !state.sourceText.isEmpty {
+
+        if state.latex.isEmpty {
             mathInputState.reset()
-            replayPlainTextInput(state.sourceText)
+            syncDerivedInputStrings()
+        } else if mathInputState.replaceWithLatex(state.latex) {
+            syncDerivedInputStrings()
+        } else {
+            errorMessage = "撤销状态中的公式无法解析，已保留原始数据"
         }
         
         // 更新样本
@@ -345,19 +353,34 @@ final class CollectorWorkspaceState: ObservableObject {
     func selectSample(id: UUID) {
         selectedSampleID = id
         guard let sample = samples.first(where: { $0.id == id }) else { return }
-        
-        if let astFileName = sample.astJSONFileName,
-           let data = try? store.loadASTJSON(fileName: astFileName) {
-            try? mathInputState.importASTJSON(data)
+
+        var restoredEditor = false
+        if let astFileName = sample.astJSONFileName {
+            do {
+                let data = try store.loadASTJSON(fileName: astFileName)
+                try mathInputState.importASTJSON(data)
+                restoredEditor = true
+            } catch {
+                mathInputState.reset()
+                errorMessage = "AST 恢复失败，已保留样本原始数据：\(error.localizedDescription)"
+            }
+        } else if sample.latex.isEmpty {
+            mathInputState.reset()
+            restoredEditor = true
+        } else if mathInputState.replaceWithLatex(sample.latex) {
+            restoredEditor = true
         } else {
             mathInputState.reset()
-            if !sample.sourceText.isEmpty {
-                replayPlainTextInput(sample.sourceText)
-            } else if !sample.latex.isEmpty {
-                replayPlainTextInput(sample.latex)
-            }
+            errorMessage = "旧样本公式无法解析，已保留原始数据"
         }
-        syncDerivedInputStrings()
+
+        if restoredEditor {
+            syncDerivedInputStrings()
+        } else {
+            currentLatex = sample.latex
+            currentSourceText = sample.sourceText
+            currentComputeExpression = sample.computeExpression
+        }
         currentDrawingData = store.loadDrawingData(fileName: sample.drawingDataFileName)
         currentCanvasSize = CGSize(width: max(sample.canvasWidth, 300), height: max(sample.canvasHeight, 200))
         
@@ -488,12 +511,6 @@ final class CollectorWorkspaceState: ObservableObject {
         currentLatex = mathInputState.latex
         currentSourceText = mathInputState.sourceText
         currentComputeExpression = mathInputState.computeExpression
-    }
-    
-    private func replayPlainTextInput(_ text: String) {
-        for character in text {
-            mathInputState.apply(.insertCharacter(String(character)))
-        }
     }
     
     // MARK: - 统计与清理
